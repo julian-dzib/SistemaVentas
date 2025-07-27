@@ -134,7 +134,7 @@ Gestor de productos
 ## Tecnologías
 - Angular
 - Typscrip
-- Boostrap 
+- Bootstrap 
 
 
 ## Requerimientos
