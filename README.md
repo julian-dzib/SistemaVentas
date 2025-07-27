@@ -138,6 +138,6 @@ Gestor de productos
 
 
 ## Requerimientos
-- Angular CLI: 20.0.4
+- Angular CLI: 17.3.6
 - Node: 22.15.1
 - Composer version 2.8.10
