@@ -38,7 +38,7 @@ Pasos utilizar el proyecto necesitas tener instado:
         "PRECIO1": 200
     }
 
-- Devolver
+- Devolver por id
     http://127.0.0.1:8000/api/products/MAT0001
 
 - Actualizar
@@ -56,6 +56,7 @@ Pasos utilizar el proyecto necesitas tener instado:
 
 ### Cliente (Ejemplo)
 - Crear   
+
     http://127.0.0.1:8000/api/clients
     
     {
@@ -63,7 +64,7 @@ Pasos utilizar el proyecto necesitas tener instado:
         "RFC": "PEGM001224XXX "
     }
 
-- Devolver
+- Devolver por id
     http://127.0.0.1:8000/api/clients/3
 
 - Actualizar
@@ -80,10 +81,15 @@ Pasos utilizar el proyecto necesitas tener instado:
 ### Venta (Ejemplo)
 - Crear   
     http://127.0.0.1:8000/api/sales
+       
         - El Cliente debe existir
+
         - El Producto debe existir
-        - Debes agregar min 1 Producto 
+
+        - Debes agregar min 1 Producto
+         
         - Devolver el RFC Y RZS
+
     {
     "IDCLIENTE": 3,
     "SUBTOTAL": 100,
