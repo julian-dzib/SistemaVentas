@@ -113,6 +113,13 @@ Pasos utilizar el proyecto necesitas tener instado:
     ]
     }
 
+### Reportes (Ejemplo)
+- VentasPorProducto
+    http://127.0.0.1:8000/api/reports/product
+    
+- VentasPorClientes
+    http://127.0.0.1:8000/api/reports/client
+    
 ## Estructura del proyecto
 ```bash
 ├─ app/
