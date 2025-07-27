@@ -24,3 +24,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/sales', 'VentaController@store');
 });
+//Rutas para los reportes
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::get('/reports/product', 'ReporteController@VentasPorProducto');
+    Route::get('/reports/client', 'ReporteController@VentasPorClientes');
+
+});
