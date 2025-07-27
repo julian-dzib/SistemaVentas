@@ -46,13 +46,20 @@ class VentaController extends Controller
             -Necesito usar al cliente, el que va pedir
             -Pedir Uno o mas materiales para agregar*/
         $request->validate([
-            'materiales' => 'required|min:1|array',
             //El cliente existe -            
-            'IDCLIENTE' => 'required|integer|exists:clientes,IDCLIENTE',
+            'IDCLIENTE' => 'required|integer|exists:clientes,IDCLIENTE',            
             //El material existe - 
             'materiales.*.IDMATERIAL' => 'required|string|exists:productos,IDMATERIAL',
             //Minimo que sea un 1 material
-            'materiales.*.CANTIDAD' => 'required|integer|min:1' 
+            'materiales.*.CANTIDAD' => 'required|integer|min:1',
+
+            //Demas campos
+            //Subtotal
+            'SUBTOTAL'=> 'required|numeric',
+            //Iva
+            'IVA'=>'required|numeric',
+            //Total
+            'TOTAL'=>'required|numeric'
         ]);
 
         //Iniciar la transaccion
@@ -60,21 +67,31 @@ class VentaController extends Controller
         //Buscar al cliente y devolver RFC Y RAZON SOCIAL
         $cliente = Cliente::with('documentos')->where('IDCLIENTE', $request->IDCLIENTE)->first();
         $rfc = $cliente->RFC;
-        $razonSocial = $cliente->RAZONSOCIAL;
+        $razonSocial = $cliente->RAZON_SOCIAL;
         
         //Crear el documento de la venta
         $documento = $cliente->documentos()->create([
-            'hora'=>now(),
-            'fecha'=>now(),
+            'SUBTOTAL' => $request->SUBTOTAL,
+            'IVA' => $request->IVA,
+            'TOTAL' => $request->TOTAL,
         ]);
 
         //Crear los renglones
         foreach ($request->materiales as $index) {
             $producto = Producto::where('IDMATERIAL', $index['IDMATERIAL'])->first();
+
+            if (!$producto) {
+                DB::rollBack();
+                return response()->json([
+                    'error' => "Producto con IDMATERIAL '{$index['IDMATERIAL']}' no encontrado."
+                ], 404);
+            }
+
             $documento->renglons()->create([
                 'IDMATERIAL' => $producto->IDMATERIAL,
+                'UNIDAD_MEDIDA' => $producto->UNIDADMEDIDA,
                 'CANTIDAD' => $index['CANTIDAD'],
-                'PRECIO_UNITARIO' => $producto->PRECIO1
+                'PRECIO1' => $producto->PRECIO1
             ]);
         }
 

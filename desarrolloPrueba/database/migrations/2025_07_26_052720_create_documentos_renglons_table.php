@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('documentos_renglons', function (Blueprint $table) {
             $table->engine('InnoDB');
+            //Agregado de mas, tener referencia del registro
             $table->increments('IDDOCUMENTO');
             
             //Establecemos las llaves foraneas
@@ -23,6 +24,7 @@ return new class extends Migration
             
 
             //Demas campos
+            //Lo definimos nuevamente, porque los precios varian 
             $table->string ('UNIDAD_MEDIDA', 10);
             $table->decimal ('CANTIDAD',13,3);
             $table->decimal ('PRECIO1',13,3);

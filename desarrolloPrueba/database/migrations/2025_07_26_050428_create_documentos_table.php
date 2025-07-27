@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->engine('InnoDB');
             $table->increments('IDCODIGO');
+
             //Establecemos una llave foranea    
             $table->unsignedInteger('IDCLIENTE');
             
-            //rzon social y rfc, es posible obtenerlo a partir de la llave foranea
+            //rzon social y rfc, es posible obtenerlo a partir de la llave foranea, porque no cambia con el paso del tiempo si no se mantiene 
             //Solo si, no deseas mantener datos antiguos si no, actualizados
-            $table->string ('RAZON_SOCIAL', 60);
-            $table->string('RFC', 15);
+            //$table->string ('RAZON_SOCIAL', 60); -ELIMINADO
+            //$table->string('RFC', 15); -ELIMINADO
 
             //Demas campos
             $table->decimal('SUBTOTAL', 13,3);

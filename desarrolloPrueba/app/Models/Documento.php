@@ -13,8 +13,7 @@ class Documento extends Model
     protected $primaryKey = "IDCODIGO";
     protected $fillable = [
         'IDCLIENTE',
-        'RAZON_SOCIAL',
-        'RFC',
+        
         'SUBTOTAL',
         'IVA',
         'TOTAL',
@@ -22,8 +21,7 @@ class Documento extends Model
 
 
     //Establecemos la relacion que existe entre la tb cliente 
-    //Documento pertenece a un cliente 
-    //El Cliente tiene muchos documentos y un documento tiene muchos clientes
+    //Un Documento pertenece a un cliente 
     public function cliente(){
         return $this->belongsTo(Cliente::class,'IDCLIENTE', 'IDCLIENTE');
     }

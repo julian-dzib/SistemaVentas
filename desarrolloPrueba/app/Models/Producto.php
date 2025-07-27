@@ -12,6 +12,9 @@ class Producto extends Model
     protected $table = "productos";
     protected $primaryKey = "IDMATERIAL";
 
+    public $incrementing = false;  
+    protected $keyType = 'string'; 
+
     protected $fillable = [
         'IDMATERIAL',
         'DESCRIPCION',
