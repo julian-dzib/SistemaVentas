@@ -1,5 +1,5 @@
-# desarrollo
-
+# Desarrollo
+# Backend
 ## Descripción
 Gestor de productos
 
@@ -125,4 +125,19 @@ Pasos utilizar el proyecto necesitas tener instado:
 ├─ app/
 ├─ routes/
 ├─ .env
+```
+# Frontend
 
+## Descripción
+Gestor de productos
+
+## Tecnologías
+- Angular
+- Typscrip
+- Boostrap 
+
+
+## Requerimientos
+- Angular CLI: 20.0.4
+- Node: 22.15.1
+- Composer version 2.8.10
