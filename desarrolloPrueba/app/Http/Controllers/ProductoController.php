@@ -91,12 +91,12 @@ class ProductoController extends Controller
         //
         try {
             //Buscar el producto
-            $producto=Cliente::find($id);
+            $producto=Producto::find($id);
 
             //Validar nuestros campos
             $request->validate(
         [
-                'IDMATERIAL' => 'required|string',
+                //'IDMATERIAL' => 'required|string',
                 'DESCRIPCION' => 'required|string',
                 'UNIDADMEDIDA' => 'required|string',
                 'PRECIO1' => 'required|numeric',
@@ -120,12 +120,12 @@ class ProductoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         //
         try{
             //Buscar el producto
-            $producto=Cliente::find($id);
+            $producto=Producto::find($id);
             if(!$producto) {
                 return response()->json([
                     'error'=> 'No se pudo eliminar el Producto'

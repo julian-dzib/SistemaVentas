@@ -16,6 +16,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 //Rutas para el Producto
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/products', 'ProductoController@store');
+    Route::get('/products/{id}','ProductoController@show');
     Route::delete('/products/{id}','ProductoController@destroy');
     Route::put('/products/{id}','ProductoController@update');
 });
