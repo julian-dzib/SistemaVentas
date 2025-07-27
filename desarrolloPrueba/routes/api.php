@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/clients', 'ClienteController@store');
     Route::get('/clients/{id}', 'ClienteController@show');
+    Route::get('/clients','ClienteController@index');
     Route::delete('/clients/{id}','ClienteController@destroy');
     Route::put('/clients/{id}','ClienteController@update');
 });
@@ -17,6 +18,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/products', 'ProductoController@store');
     Route::get('/products/{id}','ProductoController@show');
+    Route::get('/products','ProductoController@index');
     Route::delete('/products/{id}','ProductoController@destroy');
     Route::put('/products/{id}','ProductoController@update');
 });

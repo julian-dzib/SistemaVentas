@@ -13,6 +13,11 @@ class ProductoController extends Controller
     public function index()
     {
         //
+        $products = Producto::all();
+        return response()->json([
+            'message' => 'Lista de Productos',
+            'data' => $products
+        ]);
     }
 
     /**
@@ -109,7 +114,7 @@ class ProductoController extends Controller
 
             //Actualizamos nuestro registro
             $producto->save();
-        
+
         } catch (\Exception $e) {
             return response()->json([
                 'error'=> 'Ocurrio un error al actualizar el producto' .$e->getMessage()

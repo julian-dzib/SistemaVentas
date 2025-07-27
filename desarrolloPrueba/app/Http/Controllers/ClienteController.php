@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    //Seccion de clientes, 
-    // donde se pueda dar de alta create, 
-    // baja destroy 
+    //Seccion de clientes,
+    // donde se pueda dar de alta create,
+    // baja destroy
     // modificar los clientes update
     /**
      * Display a listing of the resource.
@@ -17,6 +17,11 @@ class ClienteController extends Controller
     public function index()
     {
         //
+        $cliente = Cliente::all();
+        return response()->json([
+            'message' => 'Lista de Clientes',
+            'data' => $cliente
+        ]);
     }
 
     /**
@@ -65,7 +70,7 @@ class ClienteController extends Controller
     public function show($id)
     {
         //Buscar un cliente por su ID
-        //Traer el elemento especifico 
+        //Traer el elemento especifico
         $cliente = Cliente::where('IDCLIENTE', $id)->first();
 
         if (!$cliente) {
@@ -95,7 +100,7 @@ class ClienteController extends Controller
     {
         //
         try {
-            //Buscar el cliente 
+            //Buscar el cliente
             $cliente=Cliente::find($id);
 
             //Validar nuestros campos
@@ -111,7 +116,7 @@ class ClienteController extends Controller
 
             //Actualizamos nuestro registro
             $cliente->save();
-        
+
         } catch (\Exception $e) {
             return response()->json([
                 'error'=> 'Ocurrio un error al actualizar el cliente' .$e->getMessage()
@@ -127,7 +132,7 @@ class ClienteController extends Controller
     {
         //
         try{
-            //Buscar el cliente 
+            //Buscar el cliente
             $cliente=Cliente::find($id);
             if(!$cliente) {
                 return response()->json([
