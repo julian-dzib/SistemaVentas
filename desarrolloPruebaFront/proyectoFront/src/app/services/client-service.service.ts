@@ -26,6 +26,15 @@ export class ClientServiceService {
   }
 
 
+  //Metodo para buscar un cliente por ID
+  getClientById(id: number): Observable<any> {
+    const url = `${this.baseService.API_URL}/clients/${id}`;
+    return this.httpClient.get(url).pipe(
+      catchError((error: any) => {
+        return throwError(error);
+      })
+    );
+  }
   //Metodo para obtener todos los clientes de mi bd
   getClient(){
     return this.httpClient.get(`${this.baseService.API_URL}/clients`)

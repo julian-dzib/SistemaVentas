@@ -16,15 +16,23 @@ export class ProductServiceService {
 
 
     //Metodo para crear un producto
-    createProduct(clientData: any):Observable<any> {
+    createProduct(productData: any):Observable<any> {
       const url = `${this.baseService.API_URL}/products`;
-      return this.httpClient.post(url, clientData).pipe(
+      return this.httpClient.post(url, productData).pipe(
         catchError((error: any) => {
           return throwError(error);
         })
       );
     }
-
+    //metodo para buscar un producto por ID
+    getProductById(id: string): Observable<any> {
+      const url = `${this.baseService.API_URL}/products/${id}`;
+      return this.httpClient.get(url).pipe(
+        catchError((error: any) => {
+          return throwError(error);
+        })
+      );
+    }
 
     //Metodo para obtener todos los productos de mi bd
     getProduct(){
