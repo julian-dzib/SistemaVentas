@@ -25,11 +25,19 @@ export class ClientComponent implements OnInit {
   createClient() {
     this.ClientServiceService.createClient(this.newClient).subscribe(
       (response) => {
+        this.vaciarForm();
         console.log('Cliente creado exitosamente:', response);
       },
       (error) => {
         console.error('Error al crear el cliente:', error);
       }
     );
+  }
+
+  vaciarForm() {
+    this.newClient = {
+      'RFC': '',
+      'RAZON_SOCIAL': '',
+    };
   }
 }

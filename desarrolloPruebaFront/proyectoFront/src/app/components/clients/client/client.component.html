@@ -25,8 +25,9 @@
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="btn btn-success w-100">
-            <i class="bi bi-see more-fill"></i> Guardar Cliente
+          <button type="submit" class="btn btn-success w-100"
+          [disabled]="!clientForm.form.valid">
+          Guardar Cliente
           </button>
         </div>
       </form>
