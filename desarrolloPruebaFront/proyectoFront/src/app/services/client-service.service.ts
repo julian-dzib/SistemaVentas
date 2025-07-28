@@ -15,7 +15,7 @@ export class ClientServiceService {
   ) { }
 
 
-    //Metodo para crear un cliente
+  //Metodo para crear un cliente
   createClient(clientData: any):Observable<any> {
     const url = `${this.baseService.API_URL}/clients`;
     return this.httpClient.post(url, clientData).pipe(
@@ -25,4 +25,19 @@ export class ClientServiceService {
     );
   }
 
+
+  //Metodo para obtener todos los clientes de mi bd
+  getClient(){
+    return this.httpClient.get(`${this.baseService.API_URL}/clients`)
+  }
+
+  //Metodo para eliminar un cliente
+  deleteClient(id: number): Observable<any> {
+    const url = `${this.baseService.API_URL}/clients/${id}`;
+    return this.httpClient.delete(url).pipe(
+      catchError((error: any) => {
+        return throwError(error);
+      })
+    );
+  }
 }

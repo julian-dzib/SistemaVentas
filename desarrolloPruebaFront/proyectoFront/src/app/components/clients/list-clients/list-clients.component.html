@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>EMPRESA S.A. DE C.V.</td>
-        <td>EMPS800101XXX</td>
+      <tr *ngFor="let lists of list">
+        <td>{{lists.IDCLIENTE}}</td>
+        <td>{{lists.RAZON_SOCIAL}}</td>
+        <td>{{lists.RFC}}</td>
         <td class="text-center">
-          <button class="btn btn-sm btn-danger me-2">Borrar</button>
+          <button (click)="deleteClient(lists.IDCLIENTE)"  class="btn btn-sm btn-danger me-2">Borrar</button>
           <button class="btn btn-sm btn-warning me">Editar</button>
         </td>
       </tr>
