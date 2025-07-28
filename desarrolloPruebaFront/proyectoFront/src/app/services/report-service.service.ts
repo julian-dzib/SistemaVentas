@@ -20,6 +20,6 @@ export class ReportServiceService {
 
   //Por Productos
   reportProduct(){
-    return this.httpClient.get(`${this.baseService.API_URL}/reports/products`);
+    return this.httpClient.get(`${this.baseService.API_URL}/reports/product`);
   }
 }

@@ -17,24 +17,15 @@ export class ClientComponent implements OnInit {
     private ClientServiceService: ClientServiceService,
   ) { }
 
-  //Definir un alert con Bootstrap
+  //Variables para mi alert con Bootstrap
   alertMenssage: string = '';
   alertType: string = '';
   alertVisible: boolean = false;
 
-  //Realizar mi metodo
-  menssage(message: string, type: string){
-    this.alertMenssage=message;
-    this.alertType= type,
-    this.alertVisible= true;
-    //Cerrarlo
-    setTimeout(()=> this.alertVisible=false,2000);
-  }
-
   ngOnInit(): void {
   }
 
-
+  //.................................................
   //Craar Cliente
   createClient() {
     this.ClientServiceService.createClient(this.newClient).subscribe(
@@ -56,4 +47,15 @@ export class ClientComponent implements OnInit {
       'RAZON_SOCIAL': '',
     };
   }
+
+  //.................................................
+  //Realizar mi metodo
+  menssage(message: string, type: string){
+    this.alertMenssage=message;
+    this.alertType= type,
+    this.alertVisible= true;
+    //Cerrarlo
+    setTimeout(()=> this.alertVisible=false,2000);
+  }
+
 }

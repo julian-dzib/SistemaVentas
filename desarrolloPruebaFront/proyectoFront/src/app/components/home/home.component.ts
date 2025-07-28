@@ -2,30 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { ClientServiceService } from 'src/app/services/client-service.service';
 import { ProductServiceService } from 'src/app/services/product-service.service';
 import { SaleServiceService } from 'src/app/services/sale-service.service';
-
+import { ReportServiceService } from 'src/app/services/report-service.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  //Definir un alert con Bootstrap
+  //Variables para mi alert con Bootstrap
   alertMenssage: string = '';
   alertType: string = '';
   alertVisible: boolean = false;
 
-  //Realizar mi metodo
-  menssage(message: string, type: string){
-    this.alertMenssage=message;
-    this.alertType= type,
-    this.alertVisible= true;
-    //Cerrarlo
-    setTimeout(()=> this.alertVisible=false,2000);
-  }
-
-
-
+  //Variables para las ventas
   idClienteInput: number = 0;
   cliente: any = null;
 
@@ -39,15 +31,23 @@ export class HomeComponent implements OnInit {
   iva: number = 0;
   total: number = 0;
 
+  //Variables para los report
+  reportClient: any[] = [];
+  reportProduct: any[] = [];
+
+
   constructor(
+    private reportService: ReportServiceService,
     private clientService: ClientServiceService,
     private productService: ProductServiceService,
-    private saleService: SaleServiceService
-  ) {}
+    private saleService: SaleServiceService,
+
+  ) { }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-
+  //.................................................................
+  //Proceso de Venta
   buscarCliente() {
     this.clientService.getClientById(this.idClienteInput).subscribe(
       res => {
@@ -141,4 +141,61 @@ export class HomeComponent implements OnInit {
     this.iva = 0;
     this.total = 0;
   }
+
+  //..................................................................
+  //Metodo para mostrar un alert
+  menssage(message: string, type: string) {
+    this.alertMenssage = message;
+    this.alertType = type,
+      this.alertVisible = true;
+    //Cerrarlo
+    setTimeout(() => this.alertVisible = false, 2000);
+  }
+
+  //..................................................................
+  //Metodo para generar el reporte por clientes
+  dataClient() {
+    this.reportService.reportClients().subscribe((data: any) => {
+      const doc = new jsPDF();
+      doc.text('Reporte por Clientes', 14, 8);
+      autoTable(doc, {
+        head: [['IDCLIENTE', 'RFC', 'RAZÓN SOCIAL', 'SUBTOTAL', 'IVA', 'TOTAL']],
+        body: data.map((item: any) => [
+          item.IDCLIENTE,
+          item.RFC,
+          item.RAZON_SOCIAL,
+          item.SUBTOTAL,
+          item.IVA,
+          item.TOTAL
+        ]),
+        startY: 22
+      });
+
+      doc.save('ReporteCliente.pdf');
+    });
+  }
+
+
+  //Metodo para generar el reporte por productos
+  dataProduct() {
+    this.reportService.reportProduct().subscribe((data: any) => {
+      const doc = new jsPDF();
+
+      doc.text('Reporte por Productos', 14, 8);
+
+      autoTable(doc, {
+        head: [['IDMATERIAL', 'DESCRIPCION', 'TOTAL_PIEZAS', 'SUBTOTAL']],
+        body: data.map((item: any) => [
+          item.IDMATERIAL,
+          item.DESCRIPCION,
+          item.TOTAL_PIEZAS,
+          item.SUBTOTAL,
+        ]),
+        startY: 22
+      });
+
+      doc.save('ReporteProducto.pdf');
+    });
+  }
+
 }

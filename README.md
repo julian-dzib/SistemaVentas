@@ -143,3 +143,4 @@ Gestor de productos
 - Composer version 2.8.10
 - npm install jspdf html2canvas
 - npm install bootstrap
+- npm install jspdf jspdf-autotable
