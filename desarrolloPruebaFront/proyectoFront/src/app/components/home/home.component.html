@@ -5,7 +5,8 @@
     <div class="card-body">
       <h5 class="card-title"> Agregar Cliente</h5>
       <div class="input-group">
-        <input [(ngModel)]="idClienteInput" type="number" min="0" class="form-control" placeholder="ID del Cliente" required>
+        <input [(ngModel)]="idClienteInput" type="number" min="0" class="form-control" placeholder="ID del Cliente"
+          required>
         <button class="btn btn-outline-primary" (click)="buscarCliente()">Agregar</button>
       </div>
 
@@ -67,5 +68,20 @@
   <div *ngIf="alertVisible" class="alert alert-{{ alertType }}" role="alert">
     {{ alertMenssage }}
   </div>
+
+  <!-- Motrar los reportes
+    -Por clientes
+    - Por Productos -->
+  <div class="d-flex gap-3 mb-3">
+    <button type="button" class="btn btn-outline-success btn-lg">
+      <i class="bi bi-person-fill me-2"></i>
+      Reporte por Clientes
+    </button>
+    <button type="button" class="btn btn-outline-success btn-lg">
+      <i class="bi bi-box-seam me-2"></i>
+      Reporte por Productos
+    </button>
+  </div>
+
 
 </div>

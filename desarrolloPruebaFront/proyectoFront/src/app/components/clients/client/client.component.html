@@ -24,11 +24,13 @@
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="btn btn-success w-100"
-          [disabled]="!clientForm.form.valid">
-          Guardar Cliente
+          <button type="submit" class="btn btn-success w-100" [disabled]="!clientForm.form.valid">
+            Guardar Cliente
           </button>
         </div>
       </form>
+      <div *ngIf="alertVisible" class="alert alert-{{ alertType }}" role="alert">
+        {{ alertMenssage }}
+      </div>
     </div>
   </div>

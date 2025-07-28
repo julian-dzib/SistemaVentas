@@ -1,6 +1,6 @@
 import { ClientServiceService } from './../../../services/client-service.service';
 import { Component, OnInit } from '@angular/core';
-
+import { HomeComponent } from '../../home/home.component';
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -14,8 +14,22 @@ export class ClientComponent implements OnInit {
   }
 
   constructor(
-    private ClientServiceService: ClientServiceService
+    private ClientServiceService: ClientServiceService,
   ) { }
+
+  //Definir un alert con Bootstrap
+  alertMenssage: string = '';
+  alertType: string = '';
+  alertVisible: boolean = false;
+
+  //Realizar mi metodo
+  menssage(message: string, type: string){
+    this.alertMenssage=message;
+    this.alertType= type,
+    this.alertVisible= true;
+    //Cerrarlo
+    setTimeout(()=> this.alertVisible=false,2000);
+  }
 
   ngOnInit(): void {
   }
@@ -26,10 +40,12 @@ export class ClientComponent implements OnInit {
     this.ClientServiceService.createClient(this.newClient).subscribe(
       (response) => {
         this.vaciarForm();
-        console.log('Cliente creado exitosamente:', response);
+        this.menssage('Cliente creado','success');
+        //console.log('Cliente creado exitosamente:', response);
       },
       (error) => {
-        console.error('Error al crear el cliente:', error);
+        this.menssage('Error al crear al Cliente','danger');
+        //console.error('Error al crear el cliente:', error);
       }
     );
   }
