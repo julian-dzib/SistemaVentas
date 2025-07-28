@@ -29,7 +29,9 @@
           <input type="number" class="form-control" id="PRECIO1" name="PRECIO1" placeholder="Precio del producto"
             [(ngModel)]="newProducto.PRECIO1" required min="0" step="0.01">
         </div>
-
+        <div>
+          <label for="list" class="form-label" type="submit" routerLink="/list-product">Ver Productos</label>
+        </div>
         <button type="submit" [disabled]="!formCtrl.form.valid" class="btn btn-success w-100">
           Guardar Producto
         </button>
