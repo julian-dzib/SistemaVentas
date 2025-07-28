@@ -138,6 +138,8 @@ Gestor de productos
 
 
 ## Requerimientos
-- Angular CLI: 17.3.6
-- Node: 22.15.1
+- Angular CLI: 12
+- Node: 16.20.2
 - Composer version 2.8.10
+- npm install jspdf html2canvas
+- npm install bootstrap
