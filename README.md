@@ -12,6 +12,7 @@ Gestor de productos
 - Laravel 12
 - MySQL
 - Apache
+- Swagger 
 
 ## Requerimientos
 Pasos utilizar el proyecto necesitas tener instado:
