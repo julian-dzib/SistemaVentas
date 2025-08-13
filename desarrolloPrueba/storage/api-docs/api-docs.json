@@ -1,0 +1,366 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Clientes",
+        "description": "Listado de clientes, donde se pueda dar de alta, baja y modificar los clientes",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/clients": {
+            "get": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Listado de todos los clientes",
+                "operationId": "f69470246f4e2205f273501ca5254a0d",
+                "responses": {
+                    "200": {
+                        "description": "Lista de clientes obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "IDCLIENTE": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "RAZON_SOCIAL": {
+                                                        "type": "string",
+                                                        "example": "Fernando Julian Puc Dzib modificado"
+                                                    },
+                                                    "RFC": {
+                                                        "type": "string",
+                                                        "example": "PEGM001224XXX"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T00:09:16.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T12:33:45.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Registrar un nuevo cliente",
+                "operationId": "6025633cc4f5e7ad0da12dbfc7aa2073",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "RAZON_SOCIAL": {
+                                        "type": "string",
+                                        "example": "Fernando Julian Puc Dzib"
+                                    },
+                                    "RFC": {
+                                        "type": "string",
+                                        "example": "PEGM001224XXX"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente creado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cliente creado"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "IDCLIENTE": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "RAZON_SOCIAL": {
+                                                    "type": "string",
+                                                    "example": "Fernando Julian Puc Dzib"
+                                                },
+                                                "RFC": {
+                                                    "type": "string",
+                                                    "example": "PEGM001224XXX"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-02-23T00:09:16.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-02-23T12:33:45.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "No se pudo crear el cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se pudo crear el cliente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/clientes/{id}": {
+            "get": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Mostrar la información de un cliente",
+                "operationId": "0d3826d79390929601421b5810b61231",
+                "parameters": [
+                    {
+                        "name": "IDCLIENTE",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cliente Econtrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cliente Econtrado"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "IDCLIENTE": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "RAZON_SOCIAL": {
+                                                    "type": "string",
+                                                    "example": "Fernando Julian Puc Dzib"
+                                                },
+                                                "RFC": {
+                                                    "type": "string",
+                                                    "example": "PEGM001224XXX"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-02-23T00:09:16.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-02-23T12:33:45.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Cliente no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/clients/{id}": {
+            "put": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Actualizar la información de un cliente",
+                "operationId": "7c8ff2b6d48fa713cdfae99693ebec40",
+                "parameters": [
+                    {
+                        "name": "IDCLIENTE",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "RAZON_SOCIAL": {
+                                                "type": "string"
+                                            },
+                                            "RFC": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "RAZON_SOCIAL": "Fernando Julian Puc Dzib modificado",
+                                    "RFC": "PEGM001224XXX"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cliente actualizado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Cliente no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocurrio un error al actualizar el cliente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Remove the specified resource from storage.",
+                "operationId": "281b4ae60a4aff5bd470540e5f9f7f0b",
+                "parameters": [
+                    {
+                        "name": "IDCLIENTE",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se ha eliminado el Cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Se ha eliminado el Cliente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se pudo eliminar el cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se pudo eliminar el cliente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Cliente",
+            "description": "Cliente"
+        }
+    ]
+}

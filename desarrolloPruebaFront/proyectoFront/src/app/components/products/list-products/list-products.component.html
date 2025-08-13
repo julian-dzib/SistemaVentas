@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h4 class="mb-3">Productos</h4>
+  <table class="table table-bordered table-striped">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">IDMATERIAL</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Unidad de Medida</th>
+        <th scope="col">Precio</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lists of list">
+        <td>{{lists.IDMATERIAL}}</td>
+        <td>{{lists.DESCRIPCION}}</td>
+        <td>{{lists.UNIDADMEDIDA}}</td>
+        <td>{{lists.PRECIO1}}</td>
+        <td class="text-center">
+          <button (click)="deleteProduct(lists.IDMATERIAL)"  class="btn btn-sm btn-danger me-2">Borrar</button>
+          <button class="btn btn-sm btn-warning me">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

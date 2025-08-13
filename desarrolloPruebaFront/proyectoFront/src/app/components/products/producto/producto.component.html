@@ -1,0 +1,41 @@
+<!-- Registrar Producto -->
+<div class="container mt-5">
+  <div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
+      <h5 class="mb-0">Registrar Producto</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="createProduct()" #formCtrl="ngForm">
+        <div class="mb-3">
+          <label for="IDMATERIAL" class="form-label">Clave o Código</label>
+          <input type="text" class="form-control" id="IDMATERIAL" name="IDMATERIAL"
+            placeholder="Código o clave del producto" [(ngModel)]="newProducto.IDMATERIAL" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="DESCRIPCION" class="form-label">Descripción</label>
+          <input type="text" class="form-control" id="DESCRIPCION" name="DESCRIPCION"
+            placeholder="Descripción del producto" [(ngModel)]="newProducto.DESCRIPCION" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="UNIDADMEDIDA" class="form-label">Unidad de Medida</label>
+          <input type="text" class="form-control" id="UNIDADMEDIDA" name="UNIDADMEDIDA"
+            placeholder="Unidad de medida del producto" [(ngModel)]="newProducto.UNIDADMEDIDA" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="PRECIO1" class="form-label">Precio</label>
+          <input type="number" class="form-control" id="PRECIO1" name="PRECIO1" placeholder="Precio del producto"
+            [(ngModel)]="newProducto.PRECIO1" required min="0" step="0.01">
+        </div>
+        <div>
+          <label for="list" class="form-label" type="submit" routerLink="/list-product">Ver Productos</label>
+        </div>
+        <button type="submit" [disabled]="!formCtrl.form.valid" class="btn btn-success w-100">
+          Guardar Producto
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

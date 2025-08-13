@@ -1,0 +1,36 @@
+<!-- Definir un contenedor -->
+<div class="container mt-5">
+  <!-- Registrar Cliente -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
+      <h5 class="mb-0">Registrar Cliente</h5>
+      <div>
+        <label for="list" class="form-label" type="submit" routerLink="/list-client">Ver Clientes</label>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="createClient()" #clientForm="ngForm">
+        <div class="mb-3">
+          <label for="RAZON_SOCIAL" class="form-label">Razon Social</label>
+          <input type="text" class="form-control" id="RAZON_SOCIAL" placeholder="Razon Social del cliente"
+            name="RAZON_SOCIAL" [(ngModel)]="newClient.RAZON_SOCIAL" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="RFC" class="form-label">RFC</label>
+          <input type="text" class="form-control" id="RFC" placeholder="RFC del cliente" [(ngModel)]="newClient.RFC"
+            name="RFC" required>
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-success w-100" [disabled]="!clientForm.form.valid">
+            Guardar Cliente
+          </button>
+        </div>
+      </form>
+      <div *ngIf="alertVisible" class="alert alert-{{ alertType }}" role="alert">
+        {{ alertMenssage }}
+      </div>
+    </div>
+  </div>

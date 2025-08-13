@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center"> Registrar Venta</h2>
+  <!-- Buscar Cliente -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title"> Agregar Cliente</h5>
+      <div class="input-group">
+        <input [(ngModel)]="idClienteInput" type="number" min="0" class="form-control" placeholder="ID del Cliente"
+          required>
+        <button class="btn btn-outline-primary" (click)="buscarCliente()">Agregar</button>
+      </div>
+
+      <div *ngIf="cliente" class="mt-3">
+        <p><strong>ID:</strong> {{ cliente.IDCLIENTE }}</p>
+        <p><strong>Razón Social:</strong> {{ cliente.RAZON_SOCIAL }}</p>
+        <p><strong>RFC:</strong> {{ cliente.RFC }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buscar Material -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Agregar Material</h5>
+      <div class="input-group mb-2">
+        <input [(ngModel)]="idMaterialInput" type="text" class="form-control" placeholder="Codigo del Material">
+        <button class="btn btn-outline-secondary" (click)="buscarProducto()">Agregar</button>
+      </div>
+
+      <div *ngIf="producto">
+        <p><strong>Descripción:</strong> {{ producto.DESCRIPCION }}</p>
+        <p><strong>Unidad:</strong> {{ producto.UNIDADMEDIDA }}</p>
+        <p><strong>Precio:</strong> ${{ producto.PRECIO1 }}</p>
+
+        <div class="input-group mt-3">
+          <span class="input-group-text">Cantidad</span>
+          <input [(ngModel)]="cantidadInput" type="number" min="0" class="form-control">
+        </div>
+        <button class="btn btn-success mt-2" (click)="agregarMaterial()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de materiales -->
+  <div *ngIf="materiales.length > 0" class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title"> Detalles de la Venta</h5>
+
+      <ul class="list-group mb-3">
+        <li *ngFor="let m of materiales" class="list-group-item d-flex justify-content-between align-items-center">
+          {{ m.DESCRIPCION }} x {{ m.CANTIDAD }}
+          <span class="badge bg-primary rounded-pill">${{ m.CANTIDAD * m.PRECIO1 }}</span>
+        </li>
+      </ul>
+
+      <div class="input-group mb-3">
+        <strong class="input-group-text">IVA(%)</strong>
+        <input [(ngModel)]="iva" type="number" class="form-control" (change)="actualizarIVA(iva)">
+      </div>
+
+      <p><strong>Subtotal:</strong> ${{ subtotal }}</p>
+      <p><strong>Total:</strong> ${{ total }}</p>
+
+      <button class="btn btn-dark w-100" (click)="guardarVenta()"> Generar Venta</button>
+    </div>
+  </div>
+
+  <div *ngIf="alertVisible" class="alert alert-{{ alertType }}" role="alert">
+    {{ alertMenssage }}
+  </div>
+
+  <!-- Motrar los reportes
+    -Por clientes
+    - Por Productos -->
+  <div class="d-flex gap-3 mb-3">
+    <button type="button" class="btn btn-outline-success btn-lg" (click)="dataClient()">
+      <i class="bi bi-person-fill me-2"></i>
+      Reporte por Clientes
+    </button>
+    <button type="button" class="btn btn-outline-success btn-lg" (click)="dataProduct()">
+      <i class="bi bi-box-seam me-2"></i>
+      Reporte por Productos
+    </button>
+  </div>
+</div>
