@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migratio
      */
     public function up(): void
     {
@@ -15,10 +15,10 @@ return new class extends Migration
             $table->engine('InnoDB');
             $table->increments('IDCODIGO');
 
-            //Establecemos una llave foranea    
+            //Establecemos una llave foranea
             $table->unsignedInteger('IDCLIENTE');
-            
-            //rzon social y rfc, es posible obtenerlo a partir de la llave foranea, porque no cambia con el paso del tiempo si no se mantiene 
+
+            //rzon social y rfc, es posible obtenerlo a partir de la llave foranea, porque no cambia con el paso del tiempo si no se mantiene
             //Solo si, no deseas mantener datos antiguos si no, actualizados
             //$table->string ('RAZON_SOCIAL', 60); -ELIMINADO
             //$table->string('RFC', 15); -ELIMINADO
